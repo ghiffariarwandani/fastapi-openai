@@ -1,0 +1,30 @@
+[project]
+name = "learning-openai"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "fastapi>=0.129.1",
+    "jinja2>=3.1.6",
+    "markdown>=3.10.2",
+    "openai>=2.21.0",
+    "pydantic>=2.12.5",
+    "pydantic-settings>=2.13.1",
+    "python-dotenv>=1.2.1",
+    "python-multipart>=0.0.22",
+    "ruff>=0.15.2",
+    "uvicorn>=0.41.0",
+]
+
+[dependencies-group] 
+dev = [
+  "ruff>=0.15.0",
+]
+
+[tool.ruff]
+line-length = 120
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I"]
+exclude = ["alembic"]

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> Coffee World </title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    textarea {
+      resize: none;
+    }
+  </style>
+</head>
+<body class="bg-[#212121] text-white">
+  <div class="container mx-auto min-h-[100vh] relative">
+    <div id="chat" class="h-[calc(100vh+150px)] overflow-y-auto py-4 flex flex-col gap-4">
+      {% if user_input %}
+        <div class="rounded-lg bg-[#323232d9] p-4 self-end max-w-[75%]">
+          <span class="text-white"> {{ user_input }} </span>
+        </div>
+      {% endif %}
+
+      {% if result %}
+        <div class="bubble assistant">{{ result|safe }}</div>
+      {% else %}
+        <div></div>
+      {% endif %}
+
+      <div id="loading" class="hidden">
+        Assistant lagi nyeduh jawaban...
+      </div>
+    </div>
+
+
+    <div class="fixed bottom-0 left-0 w-full py-4">
+      <div class="container mx-auto">
+        <form id="user-input" class="w-full flex flex-col" action="/coffee" method="post">
+          <textarea class="w-full border border-gray-300 rounded-lg p-2" name="topic" placeholder="Tanyakan sesuatu tentang kopi"></textarea>
+          <button class="self-end bg-blue-600 text-white px-4 py-2 rounded-xl mt-2 font-semibold" type="submit">Kirim</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+    const form = document.getElementById('user-input');
+    const loadingBubble = document.getElementById('loading');
+
+    form.addEventListener('submit', () => {
+      loadingBubble.classList.remove('hidden');
+    });
+  </script>
+</body>
+</html>
